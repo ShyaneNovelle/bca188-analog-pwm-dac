@@ -16,11 +16,9 @@ void loop() {
   for (int i = 0; i < 5; i++) {
     uint8_t val = dacSteps[i];
     
-    // Output 8-bit DAC voltage on GPIO 25
     dacWrite(DAC_PIN, val);
-    delay(100); // Allow voltage level to settle
+    delay(100);
 
-    // Read back internal DAC voltage via GPIO 34 loopback
     uint32_t mv = analogReadMilliVolts(ADC_PIN);
     float volts = mv / 1000.0;
 
