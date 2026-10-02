@@ -1,33 +1,30 @@
 #include <Arduino.h>
 
-const uint8_t DAC_PIN = 25;
-const uint8_t ADC_PIN = 34;
+const int DAC_PIN = 25;
 
 void setup() {
   Serial.begin(115200);
-  
-  analogReadResolution(12);
-  analogSetPinAttenuation(ADC_PIN, ADC_11db);
+  dacWrite(DAC_PIN, 0);
 }
 
 void loop() {
-  const uint8_t dacSteps[] = {0, 64, 128, 192, 255};
+  dacWrite(DAC_PIN, 0);
+  Serial.println("DAC code: 0");
+  delay(10000);
 
-  for (int i = 0; i < 5; i++) {
-    uint8_t val = dacSteps[i];
-    
-    dacWrite(DAC_PIN, val);
-    delay(100);
+  dacWrite(DAC_PIN, 64);
+  Serial.println("DAC code: 64");
+  delay(10000);
 
-    uint32_t mv = analogReadMilliVolts(ADC_PIN);
-    float volts = mv / 1000.0;
+  dacWrite(DAC_PIN, 128);
+  Serial.println("DAC code: 128");
+  delay(10000);
 
-    Serial.print("DAC Code: ");
-    Serial.print(val);
-    Serial.print("\tMeasured Voltage: ");
-    Serial.print(volts, 2);
-    Serial.println(" V");
+  dacWrite(DAC_PIN, 192);
+  Serial.println("DAC code: 192");
+  delay(10000);
 
-    delay(2000);
-  }
+  dacWrite(DAC_PIN, 255);
+  Serial.println("DAC code: 255");
+  delay(10000);
 }
