@@ -13,7 +13,6 @@ void setup() {
   pinMode(PWM_LED_PIN, OUTPUT);
   digitalWrite(PWM_LED_PIN, LOW);
 
-  // ESP32 Core v3.x API: attaches frequency (5000 Hz) and resolution (8-bit) directly to GPIO 19
   pwmReady = ledcAttach(PWM_LED_PIN, 5000, 8);
 
   if (pwmReady) {
