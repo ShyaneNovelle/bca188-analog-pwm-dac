@@ -3,10 +3,8 @@
 
 | | |
 |---|---|
-| **Name** | ______________________ |
-| **Course / Section** | ______________________ |
-| **Instructor** | ______________________ |
-| **Date Performed** | ______________________ |
+| **Name** | Shyane Novelle R. Canayan |
+| **Course / Section** | BCA188 - B186 |
 | **Board Used** | ESP32-WROOM-DA Module (original ESP32), connected on COM3 |
 | **Software** | Arduino IDE 2.3.10 |
 
@@ -152,7 +150,7 @@ void loop() {
 
 **What the code does:** It reads the potentiometer, converts the 0–4095 reading into a 0–255 duty value using `map()`, and sends that duty to the LED on GPIO19 using `ledcWrite()`. The PWM runs at 5000 Hz with 8-bit resolution. `constrain()` makes sure the duty never goes outside 0–255.
 
-### 5.3 Example 5: DAC Output (`lab_4_example5.ino`)
+### 5.3 Example 5: DAC Output (`lab_4_5.ino`)
 
 ```cpp
 #include <Arduino.h>
@@ -207,7 +205,6 @@ The potentiometer was set to five positions. At each position, the raw ADC value
 | 4 | High Rotation (~70%) | 2865 | ~2.31 V |
 | 5 | Higher Range Rotation (~85%) | 3471 | ~2.79 V |
 
-*Values marked with "~" are approximate.*
 
 **Table 2. Predicted and observed PWM duty (Example 4)**
 
@@ -222,19 +219,27 @@ The potentiometer was set to five positions. At each position, the raw ADC value
 The duty cycle is computed as `duty / 255 × 100%`. For example, 178 / 255 = 69.8%.
 
 **Figure 1.** Example 3 code and Serial Monitor output (low readings).
-![Figure 1: Example 3 serial output](images/example3_serial_low.png)
+<img width="640" height="365" alt="4_3" src="https://github.com/user-attachments/assets/10d7650d-ca4d-45f0-9280-c5905ac61a13" />
 
 **Figure 2.** Example 3 Serial Monitor output while turning the potentiometer up.
-![Figure 2: Example 3 serial output](images/example3_serial_high.png)
+<img width="638" height="368" alt="3" src="https://github.com/user-attachments/assets/5ee104a1-692c-4f20-b31e-1af74f2f0e45" />
 
 **Figure 3.** Example 4 Serial Monitor output at a low position (Raw ≈ 530–546, Duty = 33–34).
-![Figure 3: Example 4 low position](images/example4_low.png)
+<img width="638" height="362" alt="4-4" src="https://github.com/user-attachments/assets/f4545a33-76c4-4310-bb25-820b211116a1" />
 
 **Figure 4.** Example 4 Serial Monitor output at a middle-high position (Raw ≈ 2862–2878, Duty = 178–179).
-![Figure 4: Example 4 middle position](images/example4_mid.png)
+<img width="640" height="365" alt="4" src="https://github.com/user-attachments/assets/193c06b7-c362-4ceb-bd07-7ec0e469608a" />
 
 **Figure 5.** Example 4 Serial Monitor output at a high position (Raw ≈ 3438–3483, Duty = 214–217).
-![Figure 5: Example 4 high position](images/example4_high.png)
+<img width="640" height="374" alt="44" src="https://github.com/user-attachments/assets/511bc564-cbf4-4eff-b59b-3821b8b70043" />
+
+**Videos and Photos**
+
+<img width="1536" height="2048" alt="6e735ccc-6047-45ef-b8bf-c5ea1339a0f5" src="https://github.com/user-attachments/assets/251b4a76-5768-47fe-a481-ba3bff9a18ff" />
+
+<img width="1152" height="2048" alt="9f5e659c-8fad-4319-b69b-de018c8308fd" src="https://github.com/user-attachments/assets/647b6e5c-834d-448f-9ba1-7f4b22e6c0ac" />
+
+https://github.com/user-attachments/assets/adb9a446-736d-495d-acf3-9c8aa099178d
 
 **Observations for Examples 3 and 4:**
 
@@ -247,26 +252,26 @@ The duty cycle is computed as `duty / 255 × 100%`. For example, 178 / 255 = 69.
 
 The predicted voltage is computed with `V = (code / 255) × 3.3 V`.
 
-> **Fill in the "Measured" columns using your multimeter readings on GPIO25.** The measured values were not provided, so they are left blank here instead of being guessed.
-
 **Table 3. DAC output voltage (Example 5)**
 
 | Programmed DAC Code (0–255) | Predicted DAC Voltage (V) | Measured DAC Voltage (V) | Difference (V) |
 |:---:|:---:|:---:|:---:|
-| 0 | 0.00 V | ______ | ______ |
-| 64 | 0.83 V | ______ | ______ |
-| 128 | 1.66 V | ______ | ______ |
-| 192 | 2.49 V | ______ | ______ |
-| 255 | 3.30 V | ______ | ______ |
+| 0 | 0.00 V | 0.16 V | +0.16 V |
+| 64 | 0.83 V | 0.83 V | 0.00 V |
+| 128 | 1.66 V | 1.65 V | −0.01 V |
+| 192 | 2.49 V | 2.41 V | −0.08 V |
+| 255 | 3.30 V | 3.15 V | −0.15 V |
 
 **Figure 6.** Example 5 setup with multimeter on GPIO25.
-![Figure 6: DAC measurement setup](images/example5_setup.jpg)
+<img width="1536" height="2048" alt="ab1116a3-e84b-4bb5-a00e-03e0e54ca6d0" src="https://github.com/user-attachments/assets/d23ff36a-ae49-4e3d-9863-3ab8910e95d7" />
 
-**Video link / file:** `videos/example5_dac.mp4` (add your link here)
+**Video link / file:** 
+
+https://github.com/user-attachments/assets/79fe4e92-c7cf-4091-97be-3ab843077838
 
 ### 6.3 Oscilloscope Comparison (GPIO19 vs. GPIO25)
 
-> Complete this section only if an oscilloscope was used. If it was not available, write "Oscilloscope not available" and keep the explanation below.
+>Oscilloscope not available
 
 | Signal | Pin | What the waveform looks like |
 |:---|:---:|:---|
@@ -318,25 +323,8 @@ The main lesson is that **PWM and DAC are different outputs**. PWM switches a di
 - [x] Measurement table for Example 3 (ADC)
 - [x] Predicted vs. observed table for Example 4 (PWM)
 - [x] Predicted DAC voltage table for Example 5
-- [ ] Measured DAC voltage column for Example 5 (fill in)
-- [ ] Oscilloscope comparison (optional, fill in)
+- [x] Measured DAC voltage column for Example 5 (fill in)
 - [x] Short comparison of predicted and observed results
 
 ---
 
-## Appendix: Image and Video File Guide
-
-Place your pictures and videos in the same folder as this report, using these suggested names so the images appear:
-
-```
-Laboratory_Report.md
-images/
-    example3_serial_low.png
-    example3_serial_high.png
-    example4_low.png
-    example4_mid.png
-    example4_high.png
-    example5_setup.jpg
-videos/
-    example5_dac.mp4
-```
